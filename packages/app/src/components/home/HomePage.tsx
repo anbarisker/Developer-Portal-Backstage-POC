@@ -22,12 +22,15 @@ import {
   WelcomeTitle,
   HeaderWorldClock,
   ClockConfig,
-  HomePageStarredEntities,
+  HomePageToolkit,
+  HomePageCompanyLogo,
+  TemplateBackstageLogo,
+  TemplateBackstageLogoIcon,
 } from '@backstage/plugin-home';
 import { Content, Header, Page } from '@backstage/core-components';
-import { HomePageSearchBar } from '@backstage/plugin-search';
+import { HomePageSearchBar, searchPlugin } from '@backstage/plugin-search';
 import { HomePageCalendar } from '@backstage/plugin-gcalendar';
-import Grid from '@material-ui/core/Grid';
+import { Grid, makeStyles } from '@material-ui/core';
 import React from 'react';
 
 const clockConfigs: ClockConfig[] = [
@@ -55,69 +58,37 @@ const timeFormat: Intl.DateTimeFormatOptions = {
   hour12: false,
 };
 
-export const HomePage = (
-  <Page themeId="home">
-    <Header title={<WelcomeTitle />} pageTitleOverride="Home">
-      <HeaderWorldClock
-        clockConfigs={clockConfigs}
-        customTimeFormat={timeFormat}
-      />
-    </Header>
-    <Content>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <HomePageSearchBar />
+const useStyles = makeStyles(theme => ({
+  searchBar: {
+    display: 'flex',
+    maxWidth: '60vw',
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[1],
+    padding: '8px 0',
+    borderRadius: '50px',
+    margin: 'auto',
+  },
+}));
+
+export const HomePage = () => {
+  const classes = useStyles();
+
+  return (
+    <Page themeId="home">
+      <Header title={<WelcomeTitle />} pageTitleOverride="Home">
+        <HeaderWorldClock
+          clockConfigs={clockConfigs}
+          customTimeFormat={timeFormat}
+        />
+      </Header>
+
+      <Content>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <HomePageSearchBar placeholder="Search" />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <HomePageRandomJoke />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <HomePageRandomJoke
-            defaultCategory="any"
-            Renderer={ComponentAccordion}
-          />
-          <HomePageRandomJoke
-            title="Another Random Joke"
-            Renderer={ComponentAccordion}
-          />
-          <HomePageRandomJoke
-            title="One More Random Joke"
-            defaultCategory="programming"
-            Renderer={ComponentAccordion}
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <ComponentTabs
-            title="Random Jokes"
-            tabs={[
-              {
-                label: 'Programming',
-                Component: () => (
-                  <HomePageRandomJoke
-                    defaultCategory="programming"
-                    Renderer={ComponentTab}
-                  />
-                ),
-              },
-              {
-                label: 'Any',
-                Component: () => (
-                  <HomePageRandomJoke
-                    defaultCategory="any"
-                    Renderer={ComponentTab}
-                  />
-                ),
-              },
-            ]}
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <HomePageCalendar />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <HomePageStarredEntities />
-        </Grid>
-      </Grid>
-    </Content>
-  </Page>
-);
+      </Content>
+    </Page>
+  );
+};
