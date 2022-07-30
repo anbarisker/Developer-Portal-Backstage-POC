@@ -88,7 +88,7 @@ catalog:
     entityFilename: catalog-info.yaml
     pullRequestBranchName: backstage-integration
   rules:
-    - allow: [Component, System, API, Resource, Location]
+    - allow: [Component, System, API, Group, User, Resource, Location, Template]
   locations:
     # Local example data, file locations are relative to the backend process, typically `packages/backend`
     - type: file
@@ -105,6 +105,49 @@ catalog:
       target: ../../examples/org.yaml
       rules:
         - allow: [User, Group]
+
+    # Templates - docs template
+    - type: file
+      target: ../../scaffolder/docs-template/template.yaml
+      rules:
+        - allow: [Template, User, Group]
+
+    # Templates - component template
+    - type: file
+      target: ../../scaffolder/docs-template-cookiecutter/template.yaml
+      rules:
+        - allow: [Template, User, Group]
+
+    # Templates - CRA template
+    - type: url
+      target: https://github.com/backstage/software-templates/blob/main/scaffolder-templates/create-react-app/template.yaml
+      rules:
+        - allow: [Template]
+
+    - type: url
+      target: https://github.com/backstage/software-templates/blob/main/scaffolder-templates/react-ssr-template/template.yaml
+      rules:
+        - allow: [Template]
+
+    - type: url
+      target: https://github.com/backstage/software-templates/blob/main/scaffolder-templates/springboot-grpc-template/template.yaml
+      rules:
+        - allow: [Template]
+
+    - type: url
+      target: https://github.com/RoadieHQ/software-templates/blob/main/scaffolder-templates/github-pages-site/template.yaml
+      rules:
+        - allow: [Template]
+  
+    - type: url
+      target: https://github.com/backstage/software-templates/blob/main/scaffolder-templates/gitlab-merge-request/template.yaml
+      rules:
+        - allow: [Template]
+
+    - type: url
+      target: https://github.com/backstage/software-templates/blob/main/scaffolder-templates/pull-request/template.yaml
+      rules:
+        - allow: [Template]
 
     ## Uncomment these lines to add more example data
     # - type: url
