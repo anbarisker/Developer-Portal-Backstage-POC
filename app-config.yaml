@@ -1,9 +1,9 @@
 app:
-  title: Scaffolded Backstage App
+  title: Documentation Portal Backstage POC
   baseUrl: http://localhost:3000
 
 organization:
-  name: My Company
+  name: Documentation Portal
 
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
@@ -73,7 +73,12 @@ techdocs:
 
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
-  providers: {}
+  environment: development
+  providers:
+    github:
+      development:
+        clientId: ${GITHUB_CLIENT_ID}
+        clientSecret: ${GITHUB_CLIENT_SECRET}
 
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
