@@ -76,6 +76,7 @@ import {
 } from '@roadiehq/backstage-plugin-github-insights';
 import { EntityTodoContent } from '@backstage/plugin-todo';
 import { EntityTeamPullRequestsContent } from '@backstage/plugin-github-pull-requests-board';
+import { EntitySecurityInsightsContent } from '@roadiehq/backstage-plugin-security-insights';
 
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import {
@@ -202,6 +203,10 @@ const serviceEntityPage = (
       <EntityTeamPullRequestsContent />
     </EntityLayout.Route>
 
+    <EntityLayout.Route path="/security-insights" title="Security Insights">
+      <EntitySecurityInsightsContent />
+    </EntityLayout.Route>
+
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
@@ -241,6 +246,10 @@ const websiteEntityPage = (
       <EntityTeamPullRequestsContent />
     </EntityLayout.Route>
 
+    <EntityLayout.Route path="/security-insights" title="Security Insights">
+      <EntitySecurityInsightsContent />
+    </EntityLayout.Route>
+
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
@@ -270,6 +279,10 @@ const defaultEntityPage = (
 
     <EntityLayout.Route path="/pull-requests" title="Pull Requests">
       <EntityTeamPullRequestsContent />
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/security-insights" title="Security Insights">
+      <EntitySecurityInsightsContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/docs" title="Docs">
