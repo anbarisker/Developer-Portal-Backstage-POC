@@ -90,6 +90,12 @@ catalog:
   rules:
     - allow: [Component, System, API, Group, User, Resource, Location, Template]
   locations:
+    - type: github-discovery
+      target: https://github.com/GovTechSG
+
+    - type: github-discovery
+      target: https://github.com/sg-developer-portal
+
     # Templates - docs template
     - type: file
       target: ../../scaffolder/docs-template/template.yaml
