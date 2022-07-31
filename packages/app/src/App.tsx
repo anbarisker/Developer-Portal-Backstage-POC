@@ -92,10 +92,10 @@ const AppRouter = app.getRouter();
 
 const routes = (
   <FlatRoutes>
-    <Navigate key="/" to="catalog" />
-    <Route path="/home" element={<HomepageCompositionRoot />}>
-      {HomePage}
+    <Route path="/" element={<HomepageCompositionRoot />}>
+      <HomePage />
     </Route>
+    <Navigate key="/catalog" to="catalog" />
     <Route path="/catalog" element={<CatalogIndexPage />} />
     <Route
       path="/catalog/:namespace/:kind/:name"
