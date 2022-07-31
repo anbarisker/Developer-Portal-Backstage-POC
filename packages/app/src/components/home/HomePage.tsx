@@ -1,35 +1,12 @@
-/*
- * Copyright 2021 The Backstage Authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import {
-  HomePageRandomJoke,
-  ComponentAccordion,
-  ComponentTabs,
-  ComponentTab,
   WelcomeTitle,
   HeaderWorldClock,
   ClockConfig,
-  HomePageToolkit,
-  HomePageCompanyLogo,
-  TemplateBackstageLogo,
-  TemplateBackstageLogoIcon,
+  HomePageStarredEntities,
 } from '@backstage/plugin-home';
 import { Content, Header, Page } from '@backstage/core-components';
 import { HomePageSearchBar, searchPlugin } from '@backstage/plugin-search';
-import { HomePageCalendar } from '@backstage/plugin-gcalendar';
+import { SearchContextProvider } from '@backstage/plugin-search-react';
 import { Grid, makeStyles } from '@material-ui/core';
 import React from 'react';
 
@@ -50,6 +27,10 @@ const clockConfigs: ClockConfig[] = [
     label: 'TYO',
     timeZone: 'Asia/Tokyo',
   },
+  {
+    label: 'SGT',
+    timeZone: 'Asia/Singapore',
+  },
 ];
 
 const timeFormat: Intl.DateTimeFormatOptions = {
@@ -68,27 +49,62 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '50px',
     margin: 'auto',
   },
+  title: {
+    margin: 'auto',
+    maxWidth: '60vw',
+    textAlign: 'center',
+    padding: '8px 0',
+    fontSize: '4.5rem',
+    fontWeight: 700,
+    marginTop: '2rem',
+  },
+  subtitle: {
+    margin: 'auto',
+    maxWidth: '60vw',
+    textAlign: 'center',
+    padding: '8px 0',
+    fontSize: '1.25rem',
+  },
 }));
 
 export const HomePage = () => {
   const classes = useStyles();
 
   return (
-    <Page themeId="home">
-      <Header title={<WelcomeTitle />} pageTitleOverride="Home">
-        <HeaderWorldClock
-          clockConfigs={clockConfigs}
-          customTimeFormat={timeFormat}
-        />
-      </Header>
+    <SearchContextProvider>
+      <Page themeId="home">
+        <Header title={<WelcomeTitle />} pageTitleOverride="Home">
+          <HeaderWorldClock
+            clockConfigs={clockConfigs}
+            customTimeFormat={timeFormat}
+          />
+        </Header>
+        <Content>
+          {/* add margin top */}
 
-      <Content>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <HomePageSearchBar placeholder="Search" />
+          <Grid container justifyContent="center" spacing={6}>
+            <Grid>
+              <h1 className={classes.title}>Documentation</h1>
+              <p className={classes.subtitle}>
+                Explore technical documentation and developer guides, and learn
+                how to integrate your digital products with government
+                technologies
+              </p>
+            </Grid>
+            <Grid container item xs={12} alignItems="center" direction="row">
+              <HomePageSearchBar
+                classes={{ root: classes.searchBar }}
+                placeholder="Search"
+              />
+            </Grid>
+            <Grid container item xs={12}>
+              <Grid item xs={12} md={12}>
+                <HomePageStarredEntities />
+              </Grid>
+            </Grid>
           </Grid>
-        </Grid>
-      </Content>
-    </Page>
+        </Content>
+      </Page>
+    </SearchContextProvider>
   );
 };
