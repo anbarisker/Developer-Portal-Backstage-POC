@@ -74,6 +74,7 @@ import {
   EntityGithubInsightsReleasesCard,
   isGithubInsightsAvailable,
 } from '@roadiehq/backstage-plugin-github-insights';
+import { EntityTodoContent } from '@backstage/plugin-todo';
 import { EntityTeamPullRequestsContent } from '@backstage/plugin-github-pull-requests-board';
 
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
@@ -204,6 +205,10 @@ const serviceEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
+
+    <EntityLayout.Route path="/todo" title="Todo">
+      <EntityTodoContent />
+    </EntityLayout.Route>
   </EntityLayout>
 );
 
@@ -239,6 +244,10 @@ const websiteEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
+
+    <EntityLayout.Route path="/todo" title="Todo">
+      <EntityTodoContent />
+    </EntityLayout.Route>
   </EntityLayout>
 );
 
@@ -265,6 +274,10 @@ const defaultEntityPage = (
 
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/todo" title="Todo">
+      <EntityTodoContent />
     </EntityLayout.Route>
   </EntityLayout>
 );
