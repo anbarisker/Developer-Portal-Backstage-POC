@@ -21,9 +21,10 @@ import HomeIcon from '@material-ui/icons/Home';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import MapIcon from '@material-ui/icons/MyLocation';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
+import LocalLibrary from '@material-ui/icons/LocalLibrary';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
-import LogoFull from './LogoFull';
-import LogoIcon from './LogoIcon';
+import LogoFull from './logo/LogoFull';
+import LogoIcon from './logo/LogoIcon';
 import { NavLink } from 'react-router-dom';
 import {
   Settings as SidebarSettings,
@@ -44,6 +45,15 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
+const useStyles = makeStyles({
+  svg: {
+    width: 'auto',
+    height: 30,
+  },
+  path: {
+    fill: '#7df3e1',
+  },
+});
 const useSidebarLogoStyles = makeStyles({
   root: {
     width: sidebarConfig.drawerWidthClosed,
@@ -88,7 +98,8 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       <SidebarDivider />
       <SidebarGroup label="Menu" icon={<MenuIcon />}>
         {/* Global nav, not org-specific */}
-        <SidebarItem icon={HomeIcon} to="catalog" text="Home" />
+        <SidebarItem icon={HomeIcon} to="home" text="Home" />
+        <SidebarItem icon={LocalLibrary} to="catalog" text="Catalog" />
         <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />

@@ -46,6 +46,16 @@ import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/
 import { githubAuthApiRef } from '@backstage/core-plugin-api';
 import { SignInProviderConfig, SignInPage } from '@backstage/core-components';
 
+import { createTheme, lightTheme } from '@backstage/theme';
+import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import LightIcon from '@material-ui/icons/WbSunny';
+
+const myTheme = createTheme({
+  palette: lightTheme.palette,
+  defaultPageTheme: 'home',
+});
+
 const githubProvider: SignInProviderConfig = {
   id: 'github-auth-provider',
   title: 'GitHub',
