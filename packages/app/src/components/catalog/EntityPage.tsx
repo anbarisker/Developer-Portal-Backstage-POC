@@ -67,14 +67,26 @@ import {
   RELATION_PART_OF,
   RELATION_PROVIDES_API,
 } from '@backstage/catalog-model';
+import {
+  EntityGithubInsightsContent,
+  EntityGithubInsightsLanguagesCard,
+  EntityGithubInsightsReadmeCard,
+  EntityGithubInsightsReleasesCard,
+  isGithubInsightsAvailable,
+} from '@roadiehq/backstage-plugin-github-insights';
+import { EntityTeamPullRequestsContent } from '@backstage/plugin-github-pull-requests-board';
 
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
-import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
+import {
+  ReportIssue,
+  TextSize,
+} from '@backstage/plugin-techdocs-module-addons-contrib';
 
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
       <ReportIssue />
+      <TextSize />
     </TechDocsAddons>
   </EntityTechdocsContent>
 );
@@ -151,6 +163,10 @@ const serviceEntityPage = (
       {overviewContent}
     </EntityLayout.Route>
 
+    <EntityLayout.Route path="/code-insights" title="Project Insights">
+      <EntityGithubInsightsContent />
+    </EntityLayout.Route>
+
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
     </EntityLayout.Route>
@@ -175,6 +191,14 @@ const serviceEntityPage = (
           <EntityDependsOnResourcesCard variant="gridItem" />
         </Grid>
       </Grid>
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/project-insights" title="Project Insights">
+      <EntityGithubInsightsContent />
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/pull-requests" title="Pull Requests">
+      <EntityTeamPullRequestsContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/docs" title="Docs">
@@ -204,6 +228,14 @@ const websiteEntityPage = (
       </Grid>
     </EntityLayout.Route>
 
+    <EntityLayout.Route path="/project-insights" title="Project Insights">
+      <EntityGithubInsightsContent />
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/pull-requests" title="Pull Requests">
+      <EntityTeamPullRequestsContent />
+    </EntityLayout.Route>
+
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
@@ -221,6 +253,14 @@ const defaultEntityPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/project-insights" title="Project Insights">
+      <EntityGithubInsightsContent />
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/pull-requests" title="Pull Requests">
+      <EntityTeamPullRequestsContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/docs" title="Docs">
