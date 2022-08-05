@@ -50,6 +50,8 @@ import { createTheme, lightTheme } from '@backstage/theme';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import LightIcon from '@material-ui/icons/WbSunny';
+import { CatGifsPage } from '@internal/plugin-cat-gifs';
+import { LikeCounterPage } from '@internal/plugin-like-counter';
 
 const myTheme = createTheme({
   palette: lightTheme.palette,
@@ -109,6 +111,7 @@ const routes = (
       element={<TechDocsReaderPage />}
     >
       <TechDocsAddons>
+        <CatGifsPage />
         <ReportIssue />
         <TextSize />
       </TechDocsAddons>
@@ -142,6 +145,7 @@ const routes = (
     </Route>
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
+    <Route path="/like-counter" element={<LikeCounterPage />}/>
   </FlatRoutes>
 );
 

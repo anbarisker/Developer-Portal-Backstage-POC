@@ -20,6 +20,7 @@ import HomeIcon from '@material-ui/icons/Home';
 
 import ExtensionIcon from '@material-ui/icons/Extension';
 import MapIcon from '@material-ui/icons/MyLocation';
+
 import CategoryIcon from '@material-ui/icons/Category';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
