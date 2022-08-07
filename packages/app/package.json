@@ -36,6 +36,8 @@
     "@backstage/plugin-todo": "^0.2.9",
     "@backstage/plugin-user-settings": "^0.4.6",
     "@backstage/theme": "^0.2.16",
+    "@internal/plugin-cat-gifs": "^0.1.0",
+    "@internal/plugin-like-counter": "^0.1.0",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1",
     "@roadiehq/backstage-plugin-github-insights": "^2.0.2",
